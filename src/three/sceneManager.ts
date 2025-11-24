@@ -5,6 +5,8 @@ import type { SceneConfig } from './config/sceneConfig.d';
 
 export class SceneManager {
 
+  public needsRender = true;
+  public isPaused = false;
   private scene: THREE.Scene;
   private camera: THREE.PerspectiveCamera;
   private renderer: THREE.WebGLRenderer;
@@ -31,10 +33,13 @@ export class SceneManager {
 
     // Renderer 
     const alpha = config.canvas.alpha;
-    this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: true, alpha });
+    this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: true, alpha, powerPreference:'low-power', precision:'mediump' });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+
+    // On mobile devices, decrease pixel ratio
+    if (window.innerWidth < 768) this.renderer.setPixelRatio(1);
 
     // Light
     this.light = new THREE.DirectionalLight(0xffffff, 1);
@@ -96,17 +101,44 @@ export class SceneManager {
           this.mixer.clipAction(animations[0]).play();
         }
         this.scene.add(model);
+        this.renderOnce(); // ensuring the model appears immediately
       },
       undefined,
       (error) => console.error('Error loading GLB model:', error)
     );
   }
 
+  public pause() {
+    this.isPaused = true;
+  }
+
+  public resume() {
+    this.isPaused = false;
+    this.clock.getDelta(); //reseting delta timer so no jump
+  }
+
   public update() {
+    if (this.isPaused) return; // stopping rendering when off-screen
+
     const deltaTime = this.clock.getDelta();
-    if (this.mixer) this.mixer.update(deltaTime);
-    this.controls.update();
+    let shouldRender = false;
+
+    // If an animation mixer exists, render each frame
+    if (this.mixer) {
+      this.mixer.update(deltaTime);
+      shouldRender = true;
+    }
+
+    // Only render if necessary
+    if (shouldRender || this.needsRender) {
+      this.controls.update();
+      this.renderer.render(this.scene, this.camera);
+      this.needsRender = false;
+    }
+  }
+  public renderOnce() {
     this.renderer.render(this.scene, this.camera);
+    this.needsRender = false;
   }
 
   public resize() {
@@ -118,10 +150,27 @@ export class SceneManager {
   public dispose() {
     this.controls.dispose();
     this.renderer.dispose();
+    this.scene.traverse((obj: THREE.Object3D) => {
+      const mesh = obj as THREE.Mesh;
+      if (mesh.geometry) {
+        mesh.geometry.dispose(); // Free GPU related resources for this intance
+      }
+
+      const material = (mesh.material as THREE.Material) || null;
+      if (material) {
+        if (Array.isArray(material)) {
+          material.forEach((m) => m.dispose());
+        } else {
+          material.dispose();
+        }
+      }
+    });
   }
 
   public renderFrame() {
+    if (this.isPaused) return;
     this.controls.update();
     this.renderer.render(this.scene, this.camera);
+     this.needsRender = false;
   }
 }

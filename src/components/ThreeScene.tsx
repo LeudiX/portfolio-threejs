@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import gsap from "gsap";
+import gsap from 'gsap';
 import { SceneManager } from '../three/sceneManager';
-import { scenes } from '../three/config/sceneConfig';
+import scenes from '../three/config/sceneConfig';
 
 interface ThreeSceneProps {
     sceneKey: keyof typeof scenes;
@@ -11,39 +11,36 @@ const ThreeScene = ({ sceneKey }: ThreeSceneProps) => {
     const canvasContainerRef = useRef<HTMLDivElement | null>(null);
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const managerRef = useRef<SceneManager | null>(null);
-    const [isHovered, setIsHovered] = useState(false);
-    const [isVisible, setIsVisible] = useState(false);
+    const observerRef = useRef<IntersectionObserver | null>(null);
+    const [isHovered, setIsHovered] = useState<boolean>(false);
 
     useEffect(() => {
-        if (!canvasRef.current) return;
+        const canvas = canvasRef.current;
+        if (!canvas) return;
 
-        const config = scenes[sceneKey]; // Getting scene config
-        // Initialize SceneManager
-        const manager = new SceneManager(canvasRef.current, config);
+        const config = scenes[sceneKey];
+        const manager = new SceneManager(canvas, config);
         managerRef.current = manager;
 
-        let animationFrameId: number;
-        const containerEl = canvasContainerRef.current; // saving canvas container for current ref value
+        // Initial render
+        manager.renderOnce();
 
-        // Animation loop
-        const animate = () => {
-            if (managerRef.current && isVisible) {
-                // Only update when hovered OR when triggerAnimationOnHover is false
-                if (isHovered || !config.triggerAnimationOnHover) {
-                    managerRef.current.update();
-                } else {
-                    managerRef.current.renderFrame(); // Static frame renderer
-                }
+        let animationFrameId: number | null = null;
+        const containerEl = canvasContainerRef.current;
+
+        const animate = (): void => {
+            const mgr = managerRef.current;
+            if (!mgr || mgr.isPaused) return;
+
+            if (isHovered || !config.triggerAnimationOnHover) {
+                mgr.update();
+                animationFrameId = requestAnimationFrame(animate);
             }
-            animationFrameId = requestAnimationFrame(animate);
         };
 
         animate();
 
-        // Handle resize
-        const handleResize = () => {
-            manager.resize();
-        };
+        const handleResize = (): void => manager.resize();
         window.addEventListener('resize', handleResize);
 
         // GSAP fade-in effect on mount
@@ -55,33 +52,51 @@ const ThreeScene = ({ sceneKey }: ThreeSceneProps) => {
             );
         }
 
-        // Intersection Observer to pause when off-screen
-        const observer = new IntersectionObserver(([entry]) => {
-            setIsVisible(entry.isIntersecting);
-        }, { threshold: 0.15 });
+        // Use IntersectionObserver to pause/resume rendering
+        observerRef.current = new IntersectionObserver(
+            ([entry]) => {
+                const mgr = managerRef.current;
+                if (!mgr) return;
 
-        if (containerEl) {
-            observer.observe(containerEl);
+                if (entry.isIntersecting) {
+                    mgr.resume();
+                    mgr.renderOnce();
+                } else {
+                    mgr.pause();
+                }
+            },
+            { threshold: 0.2 }
+        );
+
+        const container = canvasContainerRef.current;
+        if (container && observerRef.current) {
+            observerRef.current.observe(container);
         }
 
-        // Cleanup
         return () => {
-            window.addEventListener('resize', handleResize);
-            cancelAnimationFrame(animationFrameId);
-            if (containerEl) observer.unobserve(containerEl);
-            manager.dispose();
-            managerRef.current = null;
-        };
-    }, [sceneKey, isHovered, isVisible]);
+            window.removeEventListener('resize', handleResize);
+            if (animationFrameId) cancelAnimationFrame(animationFrameId);
 
-    // Parallax-like tilt animation on hover
-    const handleMouseMove = (e: React.MouseEvent) => {
-        const config = scenes[sceneKey]; // Getting scene config
-        if (!canvasContainerRef.current || !config.canvas.triggerCanvasOnMouseMovement) return;
-        const rect = canvasContainerRef.current.getBoundingClientRect();
+            if (observerRef.current && container) {
+                observerRef.current.unobserve(container);
+            }
+
+            if (managerRef.current) {
+                managerRef.current.dispose();
+                managerRef.current = null;
+            }
+        };
+    }, [sceneKey, isHovered]);
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>): void => {
+        const container = canvasContainerRef.current;
+        if (!container) return;
+
+        const rect = container.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width - 0.5;
         const y = (e.clientY - rect.top) / rect.height - 0.5;
-        gsap.to(canvasContainerRef.current, {
+
+        gsap.to(container, {
             rotationY: x * 10,
             rotationX: -y * 10,
             ease: 'power2.out',
@@ -90,34 +105,38 @@ const ThreeScene = ({ sceneKey }: ThreeSceneProps) => {
         });
     };
 
-    const handleMouseLeave = () => {
-        const config = scenes[sceneKey]; // Getting scene config
-        if (!canvasContainerRef.current || !config.canvas.triggerCanvasOnMouseMovement) return;
-        gsap.to(canvasContainerRef.current, {
+    const handleMouseLeave = (): void => {
+        const container = canvasContainerRef.current;
+        if (!container) return;
+
+        gsap.to(container, {
             rotationY: 0,
             rotationX: 0,
             ease: 'power2.out',
             duration: 0.6,
         });
+
         setIsHovered(false);
     };
 
+    const handleMouseEnter = (): void => {
+        setIsHovered(true);
+        if (managerRef.current) {
+            managerRef.current.needsRender = true;
+        }
+    };
+
     return (
-        <div ref={canvasContainerRef} className="relative w-full h-full transition-transform duration-300"
-            onMouseEnter={() => {
-                setIsHovered(true)
-            }}
+        <div
+            ref={canvasContainerRef}
+            className="relative w-full h-full transition-transform duration-300"
+            onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onMouseMove={handleMouseMove}
         >
-            <canvas
-                ref={canvasRef}
-                className="webgl w-full h-full"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-            />
+            <canvas ref={canvasRef} className="webgl w-full h-full" />
         </div>
-    )
+    );
 };
 
 export default ThreeScene;

@@ -116,7 +116,7 @@ export const scenes: Record<string, SceneConfig> = {
     contact: {
         canvas: {
             alpha: true,
-            triggerCanvasOnMouseMovement: true,
+            triggerCanvasOnMouseMovement: false,
         },
         camera: {
             fov: 28,
