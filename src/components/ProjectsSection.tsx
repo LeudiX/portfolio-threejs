@@ -34,14 +34,14 @@ const ProjectsSection = () => {
   return (
     <section className="relative w-full min-h-screen flex flex-col justify-center items-center bg-linear-to-r from-[#1a120b] to-[#e27108] text-white overflow-hidden">
       {/* Background Canvas */}
-      <div className="absolute inset-0 w-full h-full pointer-events-auto flex justify-center items-end">
+      <div className="hidden md:flex justify-center items-end">
         <div className="absolute inset-0 w-full h-full pointer-events-auto">
           <ThreeScene sceneKey="projects" />
         </div>
       </div>
 
       {/* Foreground Content */}
-      <div className="absolute pointer-events-none z-10 container mx-auto px-6 md:px-12 flex flex-col justify-center items-center min-h-screen space-y-10">
+      <div className="relative pointer-events-none z-10 container mx-auto px-4 md:px-2 flex flex-col justify-center items-center min-h-screen space-y-10">
         <h2 className="text-3xl md:text-5xl font-bold text-orange-400 drop-shadow-lg text-center">Projects</h2>
 
         {/* Grid of Projects */}

@@ -31,13 +31,15 @@ const AboutSection = () => {
         <section className="relative w-full min-h-screen flex flex-col justify-center items-center bg-linear-to-r from-[#1a120b] to-[#e27108] text-white overflow-hidden">
 
             {/* Background Canvas */}
-            <div className="relative inset-0 w-full h-full pointer-events-auto">
-                <ThreeScene sceneKey="about" />
+            <div className="hidden md:flex justify-center items-end">
+                <div className="absolute inset-0 w-full h-full pointer-events-auto">
+                    <ThreeScene sceneKey="about" />
+                </div>
             </div>
 
             {/* Foreground Text */}
-            <div className="absolute pointer-events-none z-10 container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between min-h-screen">
-                <div className="w-full md:w-1/2 flex flex-col justify-center items-start space-y-6 text-left">
+            <div className="relative pointer-events-none z-10 container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-center md:justify-between min-h-screen space-y-10 md:space-y-0">
+                <div className="w-full md:w-1/2 flex flex-col justify-center items-start space-y-6 text-left pointer-events-auto">
                     <h2 className="text-3xl md:text-5xl font-bold text-orange-400 drop-shadow-lg">
                         About Me
                     </h2>
