@@ -42,7 +42,7 @@ const ProjectsSection = () => {
 
       {/* Foreground Content */}
       <div className="relative pointer-events-none z-10 container mx-auto px-4 md:px-2 flex flex-col justify-center items-center min-h-screen space-y-10">
-        <h2 className="text-3xl md:text-5xl font-bold text-orange-400 drop-shadow-lg text-center">Projects</h2>
+        <h2 className="text-4xl md:text-6xl dosis-bold text-orange-400 drop-shadow-lg text-center">Projects</h2>
 
         {/* Grid of Projects */}
         <div
@@ -55,15 +55,15 @@ const ProjectsSection = () => {
               className="rounded-xl p-1 shadow-lg hover:shadow-orange-500/20 transition-shadow duration-300 flex flex-col justify-between"
             >
               <div>
-                <h5 className="text-md font-semibold text-orange-300 mb-2">{project.title}</h5>
-                <p className="text-sm text-orange-100 mb-3 line-clamp-4">{project.description}</p>
+                <h5 className="text-md dosis-bold text-orange-400 mb-2">{project.title}</h5>
+                <p className="text-md dosis-medium text-orange-100 mb-3 line-clamp-4">{project.description}</p>
               </div>
 
               <div className="flex flex-wrap gap-2 mb-3">
                 {project.tech_tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2 py-1 rounded-full text-xs font-medium bg-linear-to-l from-[#e27108] to-[#1a120b] text-white"
+                    className="px-2 py-1 rounded-full text-xs dosis-medium bg-linear-to-l from-[#e27108] to-[#1a120b] text-white"
                   >
                     {tag}
                   </span>
@@ -74,7 +74,7 @@ const ProjectsSection = () => {
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-orange-400 hover:text-orange-300 text-sm font-semibold"
+                className="text-orange-400 hover:text-orange-300 text-sm dosis-semibold"
               >
                 View Repository →
               </a>
@@ -86,13 +86,13 @@ const ProjectsSection = () => {
         <div className="flex space-x-4 md:mt-6 pointer-events-auto">
           <button
             onClick={prevPage}
-            className="px-2 py-1 rounded-full text-xs cursor-pointer font-medium  bg-orange-700 hover:bg-orange-600 transition-colors"
+            className="px-4 py-1 shadow-lg rounded-full text-xs cursor-pointer font-medium  bg-[#c26106] hover:bg-[#e27108] transition-colors"
           >
             Prev
           </button>
           <button
             onClick={nextPage}
-            className="px-2 py-1 rounded-full text-xs cursor-pointer font-medium  bg-orange-700 hover:bg-orange-600 transition-colors"
+            className="px-4 py-1 shadow-lg rounded-full text-xs cursor-pointer font-medium   bg-[#c26106] hover:bg-[#e27108] transition-colors"
           >
             Next
           </button>

@@ -50,7 +50,7 @@ const ContactSection = () => {
     linkedin: 'https://www.linkedin.com/in/leudis-estrada/'
   };
 
-  const qrData = `Phone: ${contactInfo.phone}\nEmail: ${contactInfo.email}\nGitHub: ${contactInfo.github}\nLinkedIn: ${contactInfo.linkedin}`;
+  const qrData = `Whatsapp: ${contactInfo.phone}\nEmail: ${contactInfo.email}\nGitHub: ${contactInfo.github}\nLinkedIn: ${contactInfo.linkedin}`;
 
   return (
     <section className="relative w-full min-h-screen flex flex-col justify-center items-center bg-linear-to-l from-[#1a120b] to-[#e27108] text-white overflow-hidden">
@@ -68,8 +68,8 @@ const ContactSection = () => {
       >
         {/* Left Text Column */}
         <div className="w-full md:w-1/2 flex flex-col justify-center items-start space-y-6 text-left pointer-events-auto">
-          <h2 className="text-3xl md:text-5xl font-bold text-orange-400 drop-shadow-lg">Contact Me</h2>
-          <p className="max-w-md text-orange-100 text-md text-justify">
+          <h2 className="text-4xl md:text-6xl dosis-bold text-orange-400 drop-shadow-lg">Contact Me</h2>
+          <p className="max-w-md text-orange-100 text-lg dosis-medium text-justify">
             Feel free to reach out for collaborations, freelance opportunities, or tech discussions.
             You can contact me directly or simply scan the QR code to access all my details.
           </p>
@@ -87,7 +87,7 @@ const ContactSection = () => {
         <div className="w-full md:w-1/2 flex justify-center items-center pointer-events-auto">
           <div ref={qrRef} className="p-6 rounded-2xl shadow-xl flex flex-col items-center space-y-4 cursor-pointer">
             <QRCodeCanvas value={qrData} size={180} level="Q" marginSize={4} />
-            <p className="text-orange-300 text-sm text-center">Scan the code to view my contact info</p>
+            <p className="text-orange-300 text-sm dosis-light text-center">Scan the code to view my contact info</p>
           </div>
         </div>
       </div>

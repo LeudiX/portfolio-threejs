@@ -63,21 +63,21 @@ export const projectsData = [
     license: "GNU GPL v3.0"
   },
   {
-    title: "simple-hospital-on-call-management-system",
+    title: "hospital-management-system",
     url: "https://github.com/LeudiX/simple-hospital-on-call-management-system",
     description: "Simple Django MVT project managing hospital on-call scheduling and patient treatment records.",
     tech_tags: ["JavaScript", "AJAX", "Django", "Pillow", "Python3"],
     license: "GNU GPL v3.0"
   },
   {
-    title: "Javascript-Pet-Form-Registry-and-Validations",
+    title: "Javascript-Pet-Form-Registry",
     url: "https://github.com/LeudiX/Javascript-Pet-Form-Registry-and-Validations",
     description: "Web app for pet registration and validation using vanilla JavaScript and Bootstrap.",
     tech_tags: ["Validation", "Modals", "HTML", "CSS", "JavaScript", "Bootstrap5"],
     license: "GNU GPL v3.0"
   },
   {
-    title: "VIII--Jornada-HCI--2022",
+    title: "VIII-Jornada-HCI-2022",
     url: "https://github.com/LeudiX/VIII--Jornada-HCI--2022",
     description: "Demo WebApp for the VIII Jornada HCI Cuba 2022, featuring multilingual support.",
     tech_tags: ["W3Schools", "HTML", "CSS", "JavaScript", "Bootstrap4", "Easy Translator"],

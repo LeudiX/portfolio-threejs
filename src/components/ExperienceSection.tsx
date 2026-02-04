@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import ThreeScene from './ThreeScene';
-import { experienceData } from '../data/experienceData'; // experince information
+import { experienceData } from '../data/experienceData'; // experience information
 
 interface ExperienceItem {
     title: string;
@@ -60,14 +60,14 @@ const ExperienceSection = () => {
                 </div>
 
                 {/* Content - Left Side */}
-                <div className="w-full md:w-1/2 flex flex-col justify-center items-start text-left space-y-6 md:pl-10 pointer-events-auto" ref={contentRef}>
-                    <div className="text-xl pt-12 md:text-2xl font-bold text-orange-400 drop-shadow-lg md:flex items-center space-x-3">   
-                        <h3><span>{items[activeIndex].icon}</span> {items[activeIndex].title}</h3>
+                <div ref={contentRef} className="w-full md:w-1/2 flex flex-col justify-center items-start text-left space-y-6 md:pl-10 pointer-events-auto">
+                    <div className="dosis-bold text-2xl pt-12 md:text-4xl text-orange-400 drop-shadow-lg md:flex items-center space-x-3">   
+                        <p>{/*<span>{items[activeIndex].icon}</span>*/}{items[activeIndex].title}</p>
                     </div>
-                    <h4 className="text-xl md:text-2xl text-orange-200">
+                    <p className="text-xl dosis-medium md:text-2xl text-orange-200">
                         {items[activeIndex].company} • {items[activeIndex].period}
-                    </h4>
-                    <ul className="list-disc leading-relaxed pl-5 space-y-2 text-sm text-orange-100">
+                    </p>
+                    <ul className="list-disc leading-relaxed pl-5 space-y-2 text-md dosis-medium text-orange-100">
                         {items[activeIndex].description.map((point, idx) => (
                             <li key={idx}>{point}</li>
                         ))}

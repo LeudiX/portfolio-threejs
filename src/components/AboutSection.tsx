@@ -40,12 +40,12 @@ const AboutSection = () => {
             {/* Foreground Text */}
             <div className="relative pointer-events-none z-10 container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-center md:justify-between min-h-screen space-y-10 md:space-y-0">
                 <div className="w-full md:w-1/2 flex flex-col justify-center items-start space-y-6 text-left pointer-events-auto">
-                    <h2 className="text-3xl md:text-5xl font-bold text-orange-400 drop-shadow-lg">
+                    <p className="text-4xl md:text-6xl dosis-bold text-orange-400 drop-shadow-lg">
                         About Me
-                    </h2>
+                    </p>
                     <p
                         ref={textRef}
-                        className="max-w-md text-sm md:text-md leading-relaxed text-justify text-orange-100"
+                        className="max-w-md dosis-medium text-md leading-relaxed text-justify text-orange-100"
                     >
                         Creative Web Developer and Computer Science teacher with over 2 years of hands-on experience building digital solutions across multiple industries. Skilled in HTML5, CSS3, JavaScript, and Python, with a strong focus on modern frameworks like React, Django, and Odoo. Passionate about responsive design, cross-browser compatibility, and web performance optimization.
                     </p>
@@ -55,7 +55,7 @@ const AboutSection = () => {
                         {keywords.map((tech) => (
                             <span
                                 key={tech}
-                                className="px-3 py-1 rounded-full text-sm font-medium bg-linear-to-l from-[#e27108] to-[#1a120b] text-white shadow-md"
+                                className="px-3 py-1 rounded-full text-sm dosis-medium bg-linear-to-l from-[#e27108] to-[#1a120b] text-white shadow-md"
                             >
                                 {tech}
                             </span>
