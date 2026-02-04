@@ -6,29 +6,31 @@ const HeroSection = () => {
     <section className="relative w-full min-h-screen flex flex-col justify-center items-center bg-linear-to-r from-[#1a120b] to-[#e27108] text-white overflow-hidden">
 
       {/* Background Canvas */}
-      <div className="relative inset-0 w-full h-full pointer-events-auto">
-        <ThreeScene sceneKey="hero" />
+      <div className="flex justify-center items-end">
+        <div className="relative inset-0 w-full h-full pointer-events-auto">
+          <ThreeScene sceneKey="hero" />
+        </div>
       </div>
 
       {/* Foreground Content */}
-      <div className="absolute pointer-events-none z-10 container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-center md:justify-between min-h-screen">
+      <div className="absolute top-20 pointer-events-none z-10 container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-center md:justify-between min-h-screen">
 
         {/* Left Column - Text Content */}
-        <div className="w-full pt-20 md:w-1/2 flex flex-col justify-center items-start space-y-4 text-left">
-          <h1 className="text-4xl md:text-6xl font-bold text-orange-400 drop-shadow-lg">
+        <div className="w-full md:w-1/2 flex flex-col justify-center items-start space-y-4 text-left pointer-events-auto">
+          <p className="dosis-bold text-4xl md:text-6xl text-orange-400 drop-shadow-lg">
             Hi, I'm LeudiX
-          </h1>
-          <h2 className="text-xl md:text-2xl font-light text-orange-200">
+          </p>
+          <p className="dosis-medium text-2xl md:text-3xl text-orange-200">
             3D Developer & Creative Coder
-          </h2>
-          <h5 className="text-xl font-light text-orange-200">
+          </p>
+          <p className=" text-xl md:text-xl dosis-regular text-orange-200">
             I build accessible, pixel-perfect digital experiences for the web.
-          </h5>
-          <div className="flex space-x-6 mt-4">
+          </p>
+          {/*<div className="flex space-x-6 mt-4">
             <a href="#" className="hover:text-orange-400 transition-colors">GitHub</a>
             <a href="#" className="hover:text-orange-400 transition-colors">LinkedIn</a>
             <a href="#" className="hover:text-orange-400 transition-colors">Instagram</a>
-          </div>
+          </div>*/}
         </div>
 
         {/* Right Column - 3D Scene or Image */}

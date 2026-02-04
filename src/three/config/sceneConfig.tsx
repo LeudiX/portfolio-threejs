@@ -8,8 +8,8 @@ import type { SceneConfig } from "./sceneConfig.d";
 export const scenes: Record<string, SceneConfig> = {
     hero: {
         canvas: {
-            alpha: false, // 🔧 (alpha: sets background to transparent or not) 
-            triggerCanvasOnMouseMovement: true,
+            alpha: true, // 🔧 (alpha: sets background to transparent or not) 
+            triggerCanvasOnMouseMovement: false,
         },
         camera: {
             fov: 35,
@@ -89,7 +89,7 @@ export const scenes: Record<string, SceneConfig> = {
     },
     projects: {
         canvas: {
-            alpha: false,
+            alpha: true,
             triggerCanvasOnMouseMovement: false,
         },
         camera: {

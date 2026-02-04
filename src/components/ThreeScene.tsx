@@ -44,7 +44,7 @@ const ThreeScene = ({ sceneKey }: ThreeSceneProps) => {
         window.addEventListener('resize', handleResize);
 
         // GSAP fade-in effect on mount
-        if (containerEl) {
+        if (containerEl && config.canvas.triggerCanvasOnMouseMovement) {
             gsap.fromTo(
                 containerEl,
                 { opacity: 0, scale: 0.75 }, // Change in order to play with the size of the canvas
@@ -90,7 +90,8 @@ const ThreeScene = ({ sceneKey }: ThreeSceneProps) => {
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>): void => {
         const container = canvasContainerRef.current;
-        if (!container) return;
+        const config = scenes[sceneKey];
+        if (!container || !config.canvas.triggerCanvasOnMouseMovement) return;
 
         const rect = container.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width - 0.5;
