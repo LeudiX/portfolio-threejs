@@ -90,28 +90,6 @@ export const scenes: Record<string, SceneConfig> = {
         },
         triggerAnimationOnHover: true
     },
-    projects: {
-        canvas: {
-            alpha: true,
-            triggerCanvasOnMouseMovement: false,
-        },
-        camera: {
-            fov: 35,
-            near: 0.1,
-            far: 1500,
-            position: [5, 4, 8],
-        },
-        light: {
-            position: [-3, 6, 5],
-        },
-        controls: {
-            autoRotate: false,
-        },
-        helpers: {
-            grid: false,
-        },
-        triggerAnimationOnHover: true
-    },
     contact: {
         canvas: {
             alpha: true,
