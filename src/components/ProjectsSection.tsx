@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import ThreeScene from './ThreeScene';
+//import ThreeScene from './ThreeScene';
 import { projectsData } from '../data/projectsData';
 
 const ITEMS_PER_PAGE = 4;
@@ -32,17 +32,17 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section className="relative w-full min-h-screen flex flex-col justify-center items-center bg-linear-to-r from-[#1a120b] to-[#e27108] text-white overflow-hidden">
+    <section className="relative w-full min-h-screen flex flex-col justify-center items-center bg-linear-to-r from-[#b36013] to-[#b36013] text-white overflow-hidden py-10 sm:py-0">
       {/* Background Canvas */}
-      <div className="hidden md:flex justify-center items-end">
+      {/*<div className="hidden md:flex justify-center items-end">
         <div className="absolute inset-0 w-full h-full pointer-events-auto">
           <ThreeScene sceneKey="projects" />
         </div>
-      </div>
+      </div>*/}
 
       {/* Foreground Content */}
       <div className="relative pointer-events-none z-10 container mx-auto px-4 md:px-2 flex flex-col justify-center items-center min-h-screen space-y-10">
-        <h2 className="text-4xl md:text-6xl dosis-bold text-orange-400 drop-shadow-lg text-center">Projects</h2>
+        <h2 className="text-4xl md:text-6xl dosis-bold text-[#4d224a] drop-shadow-lg text-center">Projects</h2>
 
         {/* Grid of Projects */}
         <div
@@ -52,18 +52,18 @@ const ProjectsSection = () => {
           {displayedProjects.map((project, index) => (
             <div
               key={index}
-              className="rounded-xl p-1 shadow-lg hover:shadow-orange-500/20 transition-shadow duration-300 flex flex-col justify-between"
+              className="rounded-xl p-1 shadow-lg hover:shadow-[#4d224a] transition-shadow duration-300 flex flex-col justify-between"
             >
               <div>
-                <h5 className="text-md dosis-bold text-orange-400 mb-2">{project.title}</h5>
-                <p className="text-md dosis-medium text-orange-100 mb-3 line-clamp-4">{project.description}</p>
+                <h5 className="text-md dosis-bold text-[#4d224a] mb-2">{project.title}</h5>
+                <p className="text-md dosis-medium text-white mb-3 line-clamp-4">{project.description}</p>
               </div>
 
               <div className="flex flex-wrap gap-2 mb-3">
                 {project.tech_tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2 py-1 rounded-full text-xs dosis-medium bg-linear-to-l from-[#e27108] to-[#1a120b] text-white"
+                    className="px-2 py-1 rounded-full text-xs dosis-medium bg-linear-to-r from-[#4d224a] to-[#6a3066] text-white"
                   >
                     {tag}
                   </span>
@@ -74,7 +74,7 @@ const ProjectsSection = () => {
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-orange-400 hover:text-orange-300 text-sm dosis-semibold"
+                className="text-[#4d224a] hover:text-[#6a3066] text-sm dosis-semibold"
               >
                 View Repository →
               </a>
@@ -86,13 +86,13 @@ const ProjectsSection = () => {
         <div className="flex space-x-4 md:mt-6 pointer-events-auto">
           <button
             onClick={prevPage}
-            className="px-4 py-1 shadow-lg rounded-full text-xs cursor-pointer font-medium  bg-[#c26106] hover:bg-[#e27108] transition-colors"
+            className="px-4 py-1 shadow-lg rounded-full text-xs cursor-pointer font-medium  bg-[#4d224a] hover:bg-[#6a3066] transition-colors"
           >
             Prev
           </button>
           <button
             onClick={nextPage}
-            className="px-4 py-1 shadow-lg rounded-full text-xs cursor-pointer font-medium   bg-[#c26106] hover:bg-[#e27108] transition-colors"
+            className="px-4 py-1 shadow-lg rounded-full text-xs cursor-pointer font-medium   bg-[#4d224a] hover:bg-[#6a3066] transition-colors"
           >
             Next
           </button>

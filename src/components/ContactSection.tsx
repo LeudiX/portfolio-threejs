@@ -3,11 +3,11 @@ import gsap from 'gsap';
 import { QRCodeCanvas } from 'qrcode.react';
 import ThreeScene from './ThreeScene';
 //! React DevIcons
-import { GithubOriginal } from 'devicons-react';
 import { LinkedinPlain } from 'devicons-react';
 import { GooglePlain } from 'devicons-react';
 //? React SimpleIcons
 import { SiWhatsapp } from 'react-icons/si';
+import { SiGithub } from 'react-icons/si';
 
 const ContactSection = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -53,7 +53,7 @@ const ContactSection = () => {
   const qrData = `Whatsapp: ${contactInfo.phone}\nEmail: ${contactInfo.email}\nGitHub: ${contactInfo.github}\nLinkedIn: ${contactInfo.linkedin}`;
 
   return (
-    <section className="relative w-full min-h-screen flex flex-col justify-center items-center bg-linear-to-l from-[#1a120b] to-[#e27108] text-white overflow-hidden">
+    <section className="relative w-full min-h-screen flex flex-col justify-center items-center bg-linear-to-l  from-[#4d224a] to-[#452a44] text-white overflow-hidden">
       {/* Background Canvas */}
       <div className="flex justify-center items-end">
         <div className="absolute inset-0 w-full h-full pointer-events-auto">
@@ -75,10 +75,10 @@ const ContactSection = () => {
           </p>
           <div className="space-y-2 text-orange-200 text-sm">
             <span className='flex flex-row gap-2.5'>
-              <a href={contactInfo.phone} target="_blank"><SiWhatsapp size={20} color='#181616' /></a>
-              <a href={contactInfo.email} target="_blank"><GooglePlain size={20} color='#181616' /></a>
-              <a href={contactInfo.github} target="_blank"><GithubOriginal size={20} /></a>
-              <a href={contactInfo.linkedin} target="_blank"><LinkedinPlain size={20} color='#181616' /></a>
+              <a href={contactInfo.phone} target="_blank"><SiWhatsapp size={20} color='#ff8904' /></a>
+              <a href={contactInfo.email} target="_blank"><GooglePlain size={20} color='#ff8904' /></a>
+              <a href={contactInfo.github} target="_blank"><SiGithub size={20}  color='#ff8904' /></a>
+              <a href={contactInfo.linkedin} target="_blank"><LinkedinPlain size={20} color='#ff8904' /></a>
             </span>
           </div>
         </div>
@@ -87,7 +87,7 @@ const ContactSection = () => {
         <div className="w-full md:w-1/2 flex justify-center items-center pointer-events-auto">
           <div ref={qrRef} className="p-6 rounded-2xl shadow-xl flex flex-col items-center space-y-4 cursor-pointer">
             <QRCodeCanvas value={qrData} size={180} level="Q" marginSize={4} />
-            <p className="text-orange-300 text-sm dosis-light text-center">Scan the code to view my contact info</p>
+            <p className="text-orange-400 text-md dosis-medium text-center">Scan the code to view my contact info</p>
           </div>
         </div>
       </div>

@@ -27,7 +27,7 @@ const ExperienceSection = () => {
     }, [activeIndex]);
 
     return (
-        <section className="relative w-full min-h-screen flex flex-col justify-center items-center bg-linear-to-r from-[#1a120b] to-[#e27108] text-white overflow-hidden">
+        <section className="relative w-full min-h-screen flex flex-col justify-center items-center bg-linear-to-r from-[#4d224a] to-[#452a44] text-white overflow-hidden">
             {/* Background Canvas */}
             <div className="hidden md:flex justify-center items-end">
                 <div className="absolute inset-0 w-full h-full pointer-events-auto">
