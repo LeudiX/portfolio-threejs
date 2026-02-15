@@ -1,6 +1,9 @@
 
 // ! Assets imports
-import silly_dancer01 from "/glb/silly_dancer01.glb";
+import typing_code from "/glb/sweater_typing_code.glb";
+import break_dance from "/glb/formal_break_dance.glb";
+import sitting_idle from "/glb/tshort_sitting_idle.glb";
+import phone_talking from "/glb/sweater_phone_talking.glb";
 import type { SceneConfig } from "./sceneConfig.d";
 /** 
  * * Generic configuration file or all 3d scenes loaded in the project
@@ -12,10 +15,10 @@ export const scenes: Record<string, SceneConfig> = {
             triggerCanvasOnMouseMovement: false,
         },
         camera: {
-            fov: 35,
+            fov: 20,
             near: 0.1,
             far: 1000,
-            position: [1, 2, 5],
+            position: [5, 2, -5],
         },
         light: {
             position: [-1, 3, 4],
@@ -27,8 +30,8 @@ export const scenes: Record<string, SceneConfig> = {
             grid: false,
         },
         model: {
-            path: silly_dancer01,
-            yOffset: -0.5, // 🔧 adjust this value (0.3–1.0) to move the over the plane on y axys
+            path: typing_code,
+            yOffset: 0, // 🔧 adjust this value (0.3–1.0) to move the over the plane on y axys
             xOffset: 0, // 🔧 adjust this value (0.3–1.0) to move the over the plane on x axys
         },
         triggerAnimationOnHover: true
@@ -54,7 +57,7 @@ export const scenes: Record<string, SceneConfig> = {
             grid: false,
         },
         model: {
-            path: silly_dancer01,
+            path: break_dance,
             yOffset: -0.3,
             xOffset: 2,
         },
@@ -81,7 +84,7 @@ export const scenes: Record<string, SceneConfig> = {
             grid: false,
         },
         model: {
-            path: silly_dancer01,
+            path: sitting_idle,
             yOffset: -0.5,
             xOffset: -2.5,
         },
@@ -107,10 +110,6 @@ export const scenes: Record<string, SceneConfig> = {
         helpers: {
             grid: false,
         },
-        model: {
-            path: silly_dancer01,
-            yOffset: -0.5,
-        },
         triggerAnimationOnHover: true
     },
     contact: {
@@ -119,10 +118,10 @@ export const scenes: Record<string, SceneConfig> = {
             triggerCanvasOnMouseMovement: false,
         },
         camera: {
-            fov: 28,
+            fov: 30,
             near: 0.1,
-            far: 1200,
-            position: [0, 3, 5],
+            far: 1000,
+            position: [0, 1, 5],
         },
         light: {
             position: [1, 4, 2],
@@ -134,8 +133,8 @@ export const scenes: Record<string, SceneConfig> = {
             grid: false,
         },
         model: {
-            path: silly_dancer01,
-            yOffset: -0.5,
+            path: phone_talking,
+            yOffset: -0.3,
         },
         triggerAnimationOnHover: true
     },

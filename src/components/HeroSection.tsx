@@ -3,7 +3,7 @@ import ThreeScene from './ThreeScene';
 
 const HeroSection = () => {
   return (
-    <section className="relative w-full min-h-screen flex flex-col justify-center items-center bg-linear-to-r from-[#1a120b] to-[#e27108] text-white overflow-hidden">
+    <section className="relative w-full min-h-screen flex flex-col justify-center items-center bg-linear-to-r from-[#4d224a] to-[#452a44] text-white overflow-hidden">
 
       {/* Background Canvas */}
       <div className="flex justify-center items-end">
@@ -13,17 +13,17 @@ const HeroSection = () => {
       </div>
 
       {/* Foreground Content */}
-      <div className="absolute top-20 pointer-events-none z-10 container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-center md:justify-between min-h-screen">
+      <div className="absolute top-30 pointer-events-none z-10 container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-center md:justify-between min-h-screen">
 
         {/* Left Column - Text Content */}
         <div className="w-full md:w-1/2 flex flex-col justify-center items-start space-y-4 text-left pointer-events-auto">
           <p className="dosis-bold text-4xl md:text-6xl text-orange-400 drop-shadow-lg">
             Hi, I'm LeudiX
           </p>
-          <p className="dosis-medium text-2xl md:text-3xl text-orange-200">
-            3D Developer & Creative Coder
+          <p className="dosis-medium text-2xl md:text-3xl text-white">
+            Web Developer & Creative Coder
           </p>
-          <p className=" text-xl md:text-xl dosis-regular text-orange-200">
+          <p className=" text-xl md:text-xl dosis-regular text-white">
             I build accessible, pixel-perfect digital experiences for the web.
           </p>
           {/*<div className="flex space-x-6 mt-4">

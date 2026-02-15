@@ -33,7 +33,7 @@ export class SceneManager {
 
     // Renderer 
     const alpha = config.canvas.alpha;
-    this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: true, alpha, powerPreference:'low-power', precision:'mediump' });
+    this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: true, alpha, powerPreference: 'low-power', precision: 'mediump' });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
@@ -41,10 +41,12 @@ export class SceneManager {
     // On mobile devices, decrease pixel ratio
     if (window.innerWidth < 768) this.renderer.setPixelRatio(1);
 
-    // Light
-    this.light = new THREE.DirectionalLight(0xffffff, 1);
+    // Lights
+    // Adding directional light (Main illumination)
+    this.light = new THREE.DirectionalLight(0xffffff, 2.5); //Increased intensity
     this.light.position.set(...config.light.position);
-    this.scene.add(this.light);
+    this.scene.add(this.light)
+    this.setupSecondaryLights()
 
     // Controls
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -64,6 +66,13 @@ export class SceneManager {
 
     // Load model
     this.loadModel();
+  }
+
+  private setupSecondaryLights() {
+
+    // Adding soft ambient light (Eliminates pures ambient shadows)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    this.scene.add(ambientLight);
   }
 
   private loadModel() {
@@ -171,6 +180,6 @@ export class SceneManager {
     if (this.isPaused) return;
     this.controls.update();
     this.renderer.render(this.scene, this.camera);
-     this.needsRender = false;
+    this.needsRender = false;
   }
 }

@@ -28,7 +28,7 @@ const AboutSection = () => {
     }, []);
 
     return (
-        <section className="relative w-full min-h-screen flex flex-col justify-center items-center bg-linear-to-r from-[#1a120b] to-[#e27108] text-white overflow-hidden">
+        <section className="relative w-full min-h-screen flex flex-col justify-center items-center bg-linear-to-r from-[#b36013] to-[#b36013] text-white overflow-hidden">
 
             {/* Background Canvas */}
             <div className="hidden md:flex justify-center items-end">
@@ -40,7 +40,7 @@ const AboutSection = () => {
             {/* Foreground Text */}
             <div className="relative pointer-events-none z-10 container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-center md:justify-between min-h-screen space-y-10 md:space-y-0">
                 <div className="w-full md:w-1/2 flex flex-col justify-center items-start space-y-6 text-left pointer-events-auto">
-                    <p className="text-4xl md:text-6xl dosis-bold text-orange-400 drop-shadow-lg">
+                    <p className="text-4xl md:text-6xl dosis-bold text-[#4d224a] drop-shadow-lg">
                         About Me
                     </p>
                     <p
@@ -55,7 +55,7 @@ const AboutSection = () => {
                         {keywords.map((tech) => (
                             <span
                                 key={tech}
-                                className="px-3 py-1 rounded-full text-sm dosis-medium bg-linear-to-l from-[#e27108] to-[#1a120b] text-white shadow-md"
+                                className="px-3 py-1 rounded-full text-sm dosis-medium bg-linear-to-l from-[#6a3066] to-[#4d224a] text-white shadow-md"
                             >
                                 {tech}
                             </span>

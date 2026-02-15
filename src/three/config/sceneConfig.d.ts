@@ -18,7 +18,7 @@ export interface SceneConfig {
   helpers: {
     grid: boolean;
   };
-  model: {
+  model?: {
     path: string;
     yOffset: number;
     xOffset?: number;
